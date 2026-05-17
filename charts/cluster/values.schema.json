@@ -207,6 +207,15 @@
                 "envFrom": {
                     "type": "array"
                 },
+                "dnsConfig": {
+                    "type": "object"
+                },
+                "dnsPolicy": {
+                    "type": "string"
+                },
+                "hostAliases": {
+                    "type": "array"
+                },
                 "imageCatalogRef": {
                     "type": "object"
                 },

@@ -41,6 +41,7 @@ sidecarImage:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+# -- Override the namespace where chart resources will be rendered. Defaults to the release namespace.
 namespaceOverride: ""
 
 hostNetwork: false

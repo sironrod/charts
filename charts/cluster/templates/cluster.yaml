@@ -20,6 +20,17 @@ spec:
   imagePullSecrets:
     {{- . | toYaml | nindent 4 }}
   {{- end }}
+  {{- if .Values.cluster.dnsPolicy }}
+  dnsPolicy: {{ .Values.cluster.dnsPolicy }}
+  {{- end }}
+  {{- with .Values.cluster.dnsConfig }}
+  dnsConfig:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with .Values.cluster.hostAliases }}
+  hostAliases:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   postgresUID: {{ include "cluster.postgresUID" . }}
   postgresGID: {{ include "cluster.postgresGID" . }}
   storage:

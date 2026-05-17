@@ -2,7 +2,7 @@
 nameOverride: ""
 # -- Override the full name of the chart
 fullnameOverride: ""
-# -- Override the namespace of the chart
+# -- Override the namespace where chart resources will be rendered. Defaults to the release namespace.
 namespaceOverride: ""
 
 ###
@@ -201,6 +201,25 @@ cluster:
   # See: https://cloudnative-pg.io/documentation/current/cloudnative-pg.v1/#postgresql-cnpg-io-v1-LocalObjectReference
   imagePullSecrets: []
 
+  # -- DNS policy for the cluster pods.
+  dnsPolicy: ""
+
+  # -- DNS configuration for the cluster pods.
+  dnsConfig: {}
+    # nameservers:
+    #   - 1.1.1.1
+    # searches:
+    #   - example.local
+    # options:
+    #   - name: ndots
+    #     value: "2"
+
+  # -- Host aliases to inject into the cluster pods' /etc/hosts files.
+  hostAliases: []
+    # - ip: 10.0.0.10
+    #   hostnames:
+    #     - postgres.example.local
+
   storage:
     size: 8Gi
     storageClass: ""
@@ -353,7 +372,8 @@ cluster:
   postgresql:
     # -- PostgreSQL configuration options (postgresql.conf)
     parameters: {}
-      # max_connections: 300
+      # max_connections: "1000"
+      # shared_buffers: 8GB
     # -- Quorum-based Synchronous Replication
     synchronous: {}
      # method: any

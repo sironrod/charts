@@ -79,6 +79,20 @@ helm upgrade --install database \
 
 Refer to the [Cluster Chart documentation](charts/cluster/README.md) for advanced configuration options.
 
+## Local Helm helper
+
+This fork includes `scripts/cnpg-helm.sh` to install, update, delete, validate, and export chart output as standard Kubernetes YAML.
+
+```console
+scripts/cnpg-helm.sh install -c cluster -r pg-prod -n cnpg-database -f values.yaml
+scripts/cnpg-helm.sh update -c cluster -r pg-prod -n cnpg-database --set cluster.instances=5
+scripts/cnpg-helm.sh delete -r pg-prod -n cnpg-database
+scripts/cnpg-helm.sh test-yaml -c cluster -f values.yaml
+scripts/cnpg-helm.sh export -c cluster -r pg-prod -n cnpg-database -f values.yaml -o rendered/pg-prod.yaml
+```
+
+The `export` command uses `helm template` to render Kubernetes manifests that can be reviewed or applied with `kubectl`.
+
 ## Contributing
 
 Please read the [code of conduct](CODE-OF-CONDUCT.md) and the
